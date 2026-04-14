@@ -16,16 +16,28 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; }
 body { font-family: 'DM Sans', sans-serif; background: var(--bg); color: var(--dark); line-height: 1.65; min-height: 100vh; }
+
+/* HEADER */
 header { position: sticky; top: 0; z-index: 100; background: var(--dark); display: flex; align-items: center; justify-content: space-between; padding: 0 2rem; height: 56px; box-shadow: 0 2px 12px rgba(0,0,0,.25); }
 .logo { font-family: 'Syne', sans-serif; font-weight: 800; font-size: 1.2rem; color: var(--white); letter-spacing: -.5px; }
 .logo span { color: var(--red); }
-.progress-bar-wrap { flex: 1; max-width: 320px; margin: 0 1.5rem; height: 6px; background: rgba(255,255,255,.15); border-radius: 99px; overflow: hidden; }
+.header-center { flex: 1; display: flex; align-items: center; gap: 1rem; margin: 0 1.5rem; }
+.progress-bar-wrap { flex: 1; max-width: 320px; height: 6px; background: rgba(255,255,255,.15); border-radius: 99px; overflow: hidden; }
 .progress-bar-fill { height: 100%; background: var(--red); border-radius: 99px; transition: width .4s ease; width: 0%; }
 #progress-label { font-size: .75rem; color: rgba(255,255,255,.6); font-family: 'DM Sans', sans-serif; white-space: nowrap; }
+.quiz-score-badge { display: flex; align-items: center; gap: .4rem; background: rgba(45,164,78,.2); border: 1px solid rgba(45,164,78,.4); padding: .25rem .75rem; border-radius: 99px; font-size: .75rem; color: #86EFAC; font-weight: 600; white-space: nowrap; }
 .mobile-menu-btn { display: none; align-items: center; justify-content: center; width: 36px; height: 36px; background: rgba(255,255,255,.1); border: none; border-radius: 8px; cursor: pointer; color: #fff; font-size: 1.1rem; margin-right: .5rem; }
 .mobile-menu-btn:hover { background: rgba(255,255,255,.2); }
+
+/* SHELL */
 .shell { display: flex; min-height: calc(100vh - 56px); }
+
+/* SIDEBAR */
 nav.sidebar { width: 260px; flex-shrink: 0; background: var(--white); border-right: 1px solid var(--border); padding: 1.5rem 0; position: sticky; top: 56px; height: calc(100vh - 56px); overflow-y: auto; }
+.sidebar-progress-wrap { padding: .5rem 1.5rem 1rem; }
+.sidebar-progress-label { font-size: .7rem; color: var(--grey); margin-bottom: .4rem; display: flex; justify-content: space-between; }
+.sidebar-progress-bar { height: 4px; background: var(--border); border-radius: 99px; overflow: hidden; }
+.sidebar-progress-fill { height: 100%; background: var(--green); border-radius: 99px; transition: width .4s ease; width: 0%; }
 nav.sidebar h3 { font-family: 'Syne', sans-serif; font-size: .65rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--grey); padding: .25rem 1.5rem .75rem; }
 .nav-item { display: flex; align-items: center; gap: .65rem; padding: .6rem 1.5rem; font-size: .875rem; color: var(--mid); cursor: pointer; border-left: 3px solid transparent; transition: background .15s, color .15s, border-color .15s; text-decoration: none; position: relative; }
 .nav-item:hover { background: var(--red-lt); color: var(--red); }
@@ -33,31 +45,53 @@ nav.sidebar h3 { font-family: 'Syne', sans-serif; font-size: .65rem; font-weight
 .nav-item.active .nav-check { color: #fff; opacity: 1; }
 .nav-item.done:not(.active) { color: var(--green); }
 .nav-item .nav-icon { font-size: 1rem; flex-shrink: 0; }
-.nav-item .nav-check { margin-left: auto; font-size: .75rem; color: var(--green); opacity: 0; transition: opacity .2s; }
+.nav-item .nav-check { font-size: .75rem; color: var(--green); opacity: 0; transition: opacity .2s; }
 .nav-item.done .nav-check { opacity: 1; }
+.nav-time { font-size: .65rem; color: rgba(0,0,0,.35); background: var(--bg); padding: .1rem .4rem; border-radius: 99px; margin-left: auto; margin-right: .25rem; }
+.nav-item.active .nav-time { color: rgba(255,255,255,.6); background: rgba(255,255,255,.15); }
+.nav-item.done .nav-time { display: none; }
 .nav-item[data-tooltip]:hover::after { content: attr(data-tooltip); position: absolute; left: 105%; top: 50%; transform: translateY(-50%); background: #1A1A1A; color: #fff; padding: .4rem .75rem; border-radius: 6px; font-size: .78rem; white-space: nowrap; pointer-events: none; z-index: 500; box-shadow: 0 4px 12px rgba(0,0,0,.3); }
+
+/* MOBILE OVERLAY */
 .mobile-overlay { display: none; position: fixed; inset: 56px 0 0 0; background: rgba(0,0,0,0.4); z-index: 190; }
 .mobile-overlay.active { display: block; }
+
+/* MAIN */
 main { flex: 1; padding: 2.5rem 3rem; max-width: 900px; }
-.hero { background: var(--dark); border-radius: 16px; padding: 3rem 2.5rem; margin-bottom: 2.5rem; position: relative; overflow: hidden; }
+
+/* HERO */
+.hero { background: var(--dark); border-radius: 16px; padding: 3rem 2.5rem; margin-bottom: 2.5rem; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: space-between; gap: 2rem; }
 .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at 80% 50%, rgba(232,49,42,.35) 0%, transparent 65%); }
+.hero-content { position: relative; flex: 1; }
+.hero-visual { position: relative; flex-shrink: 0; }
+.hero-phone { width: 100px; height: 170px; background: rgba(255,255,255,.08); border: 2px solid rgba(255,255,255,.15); border-radius: 20px; display: flex; flex-direction: column; align-items: center; padding: .75rem .5rem; gap: .4rem; }
+.hero-phone-bar { width: 40px; height: 4px; background: var(--red); border-radius: 99px; }
+.hero-phone-screen { flex: 1; width: 100%; background: rgba(255,255,255,.05); border-radius: 8px; display: flex; flex-direction: column; gap: .3rem; padding: .4rem; }
+.hero-phone-line { height: 4px; border-radius: 99px; background: rgba(255,255,255,.2); }
+.hero-phone-line.red { background: var(--red); width: 60%; }
+.hero-phone-line.short { width: 40%; }
+.hero-phone-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); margin-top: auto; }
 .hero-badge { display: inline-block; background: var(--red); color: var(--white); font-family: 'Syne', sans-serif; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .75rem; border-radius: 99px; margin-bottom: 1rem; }
-.hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: .75rem; position: relative; }
-.hero p { color: rgba(255,255,255,.65); font-size: 1rem; max-width: 520px; position: relative; }
-.hero-pills { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.5rem; position: relative; }
+.hero h1 { font-family: 'Syne', sans-serif; font-size: clamp(1.5rem, 2.5vw, 2.4rem); font-weight: 800; color: var(--white); line-height: 1.15; margin-bottom: .75rem; }
+.hero p { color: rgba(255,255,255,.65); font-size: .95rem; max-width: 480px; }
+.hero-pills { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: 1.5rem; }
 .pill { background: rgba(255,255,255,.1); color: rgba(255,255,255,.85); font-size: .8rem; padding: .3rem .8rem; border-radius: 99px; border: 1px solid rgba(255,255,255,.12); }
-/* ===== BOTÕES DOWNLOAD ===== */
-.store-buttons { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.25rem; position: relative; }
+
+/* STORE BUTTONS */
+.store-buttons { display: flex; gap: .75rem; flex-wrap: wrap; margin-top: 1.25rem; }
 .store-btn { display: flex; align-items: center; gap: .65rem; padding: .65rem 1.2rem; border-radius: 10px; text-decoration: none; background: rgba(255,255,255,.1); border: 1px solid rgba(255,255,255,.2); transition: all .2s; }
 .store-btn:hover { background: rgba(255,255,255,.2); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.3); }
-.store-btn-icon { font-size: 1.6rem; line-height: 1; }
+.store-btn-icon { font-size: 1.6rem; line-height: 1; color: #fff; display: flex; align-items: center; }
 .store-btn-text { display: flex; flex-direction: column; }
 .store-btn-sub { font-size: .6rem; color: rgba(255,255,255,.65); text-transform: uppercase; letter-spacing: .08em; }
 .store-btn-name { font-size: .9rem; font-weight: 700; color: #fff; font-family: 'Syne', sans-serif; line-height: 1.2; }
-/* ===== VÍDEO ===== */
+
+/* VIDEO */
 .video-wrapper { margin-bottom: 1.5rem; border-radius: 12px; overflow: hidden; background: #000; border: 1px solid var(--border); box-shadow: 0 4px 16px rgba(0,0,0,.1); position: relative; padding-top: 56.25%; }
 .video-wrapper iframe { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; }
 .video-label { font-family: 'Syne', sans-serif; font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; color: var(--grey); margin-bottom: .6rem; display: flex; align-items: center; gap: .4rem; }
+
+/* SECTION CARDS */
 .section-card { background: var(--white); border: 1px solid var(--border); border-radius: 14px; margin-bottom: 1.5rem; overflow: hidden; display: none; animation: fadeUp .35s ease both; }
 .section-card.visible { display: block; }
 @keyframes fadeUp { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
@@ -66,7 +100,8 @@ main { flex: 1; padding: 2.5rem 3rem; max-width: 900px; }
 .card-icon { width: 42px; height: 42px; border-radius: 10px; background: var(--red-lt); display: flex; align-items: center; justify-content: center; font-size: 1.25rem; flex-shrink: 0; }
 .card-title { font-family: 'Syne', sans-serif; font-weight: 700; font-size: 1rem; color: var(--dark); }
 .card-subtitle { font-size: .8rem; color: var(--grey); margin-top: .1rem; }
-.card-chevron { margin-left: auto; color: var(--grey); font-size: 1rem; transition: transform .25s; }
+.card-time { display: flex; align-items: center; gap: .3rem; font-size: .75rem; color: var(--grey); background: var(--bg); padding: .25rem .6rem; border-radius: 99px; border: 1px solid var(--border); margin-left: auto; margin-right: .5rem; white-space: nowrap; }
+.card-chevron { color: var(--grey); font-size: 1rem; transition: transform .25s; flex-shrink: 0; }
 .card-header.open .card-chevron { transform: rotate(180deg); }
 .card-body { padding: 1.5rem; display: none; }
 .card-body.open { display: block; }
@@ -105,8 +140,6 @@ main { flex: 1; padding: 2.5rem 3rem; max-width: 900px; }
 .price-card { border-radius: 10px; padding: .9rem; border: 1px solid var(--border); }
 .price-card .pc-label { font-size: .7rem; color: var(--grey); text-transform: uppercase; letter-spacing: .08em; font-weight: 600; margin-bottom: .25rem; }
 .price-card .pc-desc { font-size: .85rem; color: var(--mid); }
-.price-card.highlight { background: var(--red-lt); border-color: #FECACA; }
-.price-card.highlight .pc-label { color: var(--red-dk); }
 .sync-steps { counter-reset: sync; list-style: none; }
 .sync-steps li { counter-increment: sync; display: flex; gap: .9rem; align-items: flex-start; padding: .8rem 0; border-bottom: 1px solid var(--border); font-size: .9rem; color: var(--mid); }
 .sync-steps li:last-child { border-bottom: none; }
@@ -116,6 +149,8 @@ main { flex: 1; padding: 2.5rem 3rem; max-width: 900px; }
 .btn-done:active { transform: scale(.97); }
 .btn-done.completed { background: var(--green); pointer-events: none; }
 .btn-done.completed:hover { transform: none; box-shadow: none; }
+
+/* QUIZ */
 .quiz-section { margin-top: 1.5rem; border-top: 2px dashed #E4E4E4; padding-top: 1.25rem; }
 .quiz-title { font-family: 'Syne', sans-serif; font-size: .8rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--grey); margin-bottom: 1rem; display: flex; align-items: center; gap: .5rem; }
 .quiz-title::before { content: "\1F9E0"; font-size: 1rem; }
@@ -136,6 +171,8 @@ main { flex: 1; padding: 2.5rem 3rem; max-width: 900px; }
 .quiz-retry { margin-top: .75rem; background: none; border: 2px solid var(--border); color: var(--mid); padding: .5rem 1rem; border-radius: 8px; cursor: pointer; font-size: .85rem; font-weight: 600; transition: all .2s; display: none; align-items: center; gap: .4rem; }
 .quiz-retry.show { display: inline-flex; }
 .quiz-retry:hover { border-color: var(--red); color: var(--red); }
+
+/* FINISH SCREEN */
 #finish-screen { display: none; text-align: center; background: linear-gradient(135deg, #1A1A1A 0%, #2d1a1a 100%); border: 1px solid #333; border-radius: 16px; padding: 3rem 2rem; margin-bottom: 1.5rem; color: #fff; }
 #finish-screen.visible { display: block; animation: fadeUp .4s ease both; }
 #finish-screen .finish-icon { font-size: 4rem; margin-bottom: 1rem; display: block; animation: popIn .5s cubic-bezier(.175,.885,.32,1.275) both; }
@@ -147,6 +184,15 @@ main { flex: 1; padding: 2.5rem 3rem; max-width: 900px; }
 .finish-pill { background: rgba(45,164,78,.25); border: 1px solid rgba(45,164,78,.5); color: #86EFAC; padding: .35rem .85rem; border-radius: 99px; font-size: .8rem; font-weight: 500; }
 .finish-cta { background: var(--red); color: #fff; border: none; padding: .85rem 2rem; border-radius: 10px; font-size: 1rem; font-weight: 700; cursor: pointer; transition: background .2s; font-family: 'Syne', sans-serif; letter-spacing: .03em; }
 .finish-cta:hover { background: var(--red-dk); }
+
+/* CONFETTI */
+#confetti-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; display: none; }
+
+/* TOAST */
+.toast { position: fixed; bottom: 1.5rem; right: 1.5rem; background: var(--dark); color: #fff; padding: .65rem 1.2rem; border-radius: 8px; font-size: .85rem; font-weight: 500; display: flex; align-items: center; gap: .5rem; box-shadow: 0 4px 20px rgba(0,0,0,.3); z-index: 1000; transform: translateY(100px); opacity: 0; transition: all .3s ease; border-left: 3px solid var(--green); }
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* RESPONSIVE */
 @media (max-width: 780px) {
   .mobile-menu-btn { display: flex !important; }
   nav.sidebar { position: fixed; left: -260px; top: 56px; height: calc(100vh - 56px); z-index: 200; transition: left 0.3s ease; box-shadow: 4px 0 20px rgba(0,0,0,.15); }
@@ -155,149 +201,405 @@ main { flex: 1; padding: 2.5rem 3rem; max-width: 900px; }
   .definition-grid, .price-grid { grid-template-columns: 1fr; }
   .phone-mock { max-width: 100%; }
   .section-card { border-radius: 10px; }
-  .progress-bar-wrap { max-width: 120px; }
+  .progress-bar-wrap { max-width: 80px; }
   .store-buttons { gap: .5rem; }
-  .store-btn { padding: .5rem .9rem; }
+  .store-btn { padding: .5rem .9rem; flex: 1; justify-content: center; }
+  .hero { flex-direction: column; padding: 2rem 1.5rem; gap: 1rem; }
+  .hero-visual { display: none; }
+  .hero h1 { font-size: clamp(1.4rem, 5vw, 1.8rem); }
+  .quiz-score-badge { display: none; }
+  .card-time { display: none; }
 }
 </style>
 </head>
 <body>
+
+<canvas id="confetti-canvas" aria-hidden="true"></canvas>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
 <div class="mobile-overlay" id="mobileOverlay" onclick="closeMobileMenu()"></div>
+
 <header>
-<button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu" onclick="toggleMobileMenu()">&#9776;</button>
-<div class="logo"><span>Z</span>.GO</div>
-<div class="progress-bar-wrap"><div class="progress-bar-fill" id="progress-fill"></div></div>
-<span id="progress-label">0 / 7 m&#243;dulos</span>
+  <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Abrir menu" onclick="toggleMobileMenu()">&#9776;</button>
+  <div class="logo"><span>Z</span>.GO</div>
+  <div class="header-center">
+    <div class="progress-bar-wrap" role="progressbar" aria-label="Progresso do treinamento">
+      <div class="progress-bar-fill" id="progress-fill"></div>
+    </div>
+    <span id="progress-label" aria-live="polite">0 / 7 m&#243;dulos</span>
+    <div class="quiz-score-badge" id="header-score" aria-live="polite">
+      <i class="fa fa-star" aria-hidden="true"></i>
+      <span id="header-score-text">0/7 quiz</span>
+    </div>
+  </div>
 </header>
+
 <div class="shell">
-<nav class="sidebar" id="sidebar">
-<h3>M&#243;dulos</h3>
-<a class="nav-item active" data-module="intro" data-tooltip="Vis&#227;o geral do aplicativo ZGO" onclick="showModule('intro', this)"><span class="nav-icon">&#128241;</span> O que &#233; o ZGO <span class="nav-check">&#10004;</span></a>
-<a class="nav-item" data-module="tela" data-tooltip="Agenda semanal de pesquisas" onclick="showModule('tela', this)"><span class="nav-icon">&#127968;</span> Tela Inicial <span class="nav-check">&#10004;</span></a>
-<a class="nav-item" data-module="checkin" data-tooltip="Confirma&#231;&#227;o de chegada ao estabelecimento" onclick="showModule('checkin', this)"><span class="nav-icon">&#128205;</span> Check-In <span class="nav-check">&#10004;</span></a>
-<a class="nav-item" data-module="gondola" data-tooltip="Coleta de pre&#231;os dos produtos" onclick="showModule('gondola', this)"><span class="nav-icon">&#128722;</span> Pesquisa na G&#244;ndola <span class="nav-check">&#10004;</span></a>
-<a class="nav-item" data-module="checkout" data-tooltip="Confirma&#231;&#227;o de sa&#237;da do estabelecimento" onclick="showModule('checkout', this)"><span class="nav-icon">&#127937;</span> Check-Out <span class="nav-check">&#10004;</span></a>
-<a class="nav-item" data-module="sync" data-tooltip="Envio obrigat&#243;rio dos dados coletados" onclick="showModule('sync', this)"><span class="nav-icon">&#128260;</span> Sincroniza&#231;&#227;o <span class="nav-check">&#10004;</span></a>
-<a class="nav-item" data-module="kindle" data-tooltip="Uso do Kindle em lojas autorizadas" onclick="showModule('kindle', this)"><span class="nav-icon">&#128223;</span> Kindle <span class="nav-check">&#10004;</span></a>
-</nav>
-<main>
-<div class="hero">
-<div class="hero-badge">Treinamento Oficial</div>
-<h1>Aplicativo ZGO<br>Guia do Pesquisador</h1>
-<p>Tudo o que voc&#234; precisa saber para realizar pesquisas de campo com excel&#234;ncia usando o aplicativo ZGO.</p>
-<div class="hero-pills">
-<span class="pill">&#128241; Android &amp; iOS</span>
-<span class="pill">7 M&#243;dulos</span>
-<span class="pill">Coleta de Pre&#231;os</span>
+  <nav class="sidebar" id="sidebar" aria-label="Navega&#231;&#227;o dos m&#243;dulos">
+    <div class="sidebar-progress-wrap">
+      <div class="sidebar-progress-label">
+        <span>Progresso</span>
+        <span id="sidebar-progress-text">0/7</span>
+      </div>
+      <div class="sidebar-progress-bar">
+        <div class="sidebar-progress-fill" id="sidebar-progress-fill"></div>
+      </div>
+    </div>
+    <h3>M&#243;dulos</h3>
+    <a class="nav-item active" href="#" data-module="intro" data-tooltip="Vis&#227;o geral do aplicativo ZGO" onclick="showModule('intro', this); return false;" aria-label="M&#243;dulo: O que &#233; o ZGO">
+      <span class="nav-icon" aria-hidden="true">&#128241;</span> O que &#233; o ZGO
+      <span class="nav-time">&#9201; 3min</span>
+      <span class="nav-check" aria-label="Conclu&#237;do">&#10004;</span>
+    </a>
+    <a class="nav-item" href="#" data-module="tela" data-tooltip="Agenda semanal de pesquisas" onclick="showModule('tela', this); return false;" aria-label="M&#243;dulo: Tela Inicial">
+      <span class="nav-icon" aria-hidden="true">&#127968;</span> Tela Inicial
+      <span class="nav-time">&#9201; 2min</span>
+      <span class="nav-check" aria-label="Conclu&#237;do">&#10004;</span>
+    </a>
+    <a class="nav-item" href="#" data-module="checkin" data-tooltip="Confirma&#231;&#227;o de chegada ao estabelecimento" onclick="showModule('checkin', this); return false;" aria-label="M&#243;dulo: Check-In">
+      <span class="nav-icon" aria-hidden="true">&#128205;</span> Check-In
+      <span class="nav-time">&#9201; 3min</span>
+      <span class="nav-check" aria-label="Conclu&#237;do">&#10004;</span>
+    </a>
+    <a class="nav-item" href="#" data-module="gondola" data-tooltip="Coleta de pre&#231;os dos produtos" onclick="showModule('gondola', this); return false;" aria-label="M&#243;dulo: Pesquisa na G&#244;ndola">
+      <span class="nav-icon" aria-hidden="true">&#128722;</span> Pesquisa na G&#244;ndola
+      <span class="nav-time">&#9201; 5min</span>
+      <span class="nav-check" aria-label="Conclu&#237;do">&#10004;</span>
+    </a>
+    <a class="nav-item" href="#" data-module="checkout" data-tooltip="Confirma&#231;&#227;o de sa&#237;da do estabelecimento" onclick="showModule('checkout', this); return false;" aria-label="M&#243;dulo: Check-Out">
+      <span class="nav-icon" aria-hidden="true">&#127937;</span> Check-Out
+      <span class="nav-time">&#9201; 2min</span>
+      <span class="nav-check" aria-label="Conclu&#237;do">&#10004;</span>
+    </a>
+    <a class="nav-item" href="#" data-module="sync" data-tooltip="Envio obrigat&#243;rio dos dados coletados" onclick="showModule('sync', this); return false;" aria-label="M&#243;dulo: Sincroniza&#231;&#227;o">
+      <span class="nav-icon" aria-hidden="true">&#128260;</span> Sincroniza&#231;&#227;o
+      <span class="nav-time">&#9201; 4min</span>
+      <span class="nav-check" aria-label="Conclu&#237;do">&#10004;</span>
+    </a>
+    <a class="nav-item" href="#" data-module="kindle" data-tooltip="Uso do Kindle em lojas autorizadas" onclick="showModule('kindle', this); return false;" aria-label="M&#243;dulo: Kindle">
+      <span class="nav-icon" aria-hidden="true">&#128223;</span> Kindle
+      <span class="nav-time">&#9201; 3min</span>
+      <span class="nav-check" aria-label="Conclu&#237;do">&#10004;</span>
+    </a>
+  </nav>
+
+  <main>
+    <!-- HERO -->
+    <div class="hero" role="banner">
+      <div class="hero-content">
+        <div class="hero-badge">Treinamento Oficial</div>
+        <h1>Aplicativo ZGO<br>Guia do Pesquisador</h1>
+        <p>Tudo o que voc&#234; precisa saber para realizar pesquisas de campo com excel&#234;ncia usando o aplicativo ZGO.</p>
+        <div class="hero-pills">
+          <span class="pill">&#128241; Android &amp; iOS</span>
+          <span class="pill">7 M&#243;dulos</span>
+          <span class="pill">Coleta de Pre&#231;os</span>
+        </div>
+        <div class="store-buttons">
+          <a href="https://play.google.com/store/apps/details?id=com.zgo" target="_blank" rel="noopener noreferrer" class="store-btn" aria-label="Baixar ZGO no Google Play">
+            <span class="store-btn-icon"><i class="fa-brands fa-google-play" aria-hidden="true"></i></span>
+            <div class="store-btn-text">
+              <span class="store-btn-sub">Dispon&#237;vel no</span>
+              <span class="store-btn-name">Google Play</span>
+            </div>
+          </a>
+          <a href="https://apps.apple.com/us/app/zgo/id1575626739" target="_blank" rel="noopener noreferrer" class="store-btn" aria-label="Baixar ZGO na App Store">
+            <span class="store-btn-icon"><i class="fa-brands fa-apple" aria-hidden="true"></i></span>
+            <div class="store-btn-text">
+              <span class="store-btn-sub">Baixe na</span>
+              <span class="store-btn-name">App Store</span>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-phone">
+          <div class="hero-phone-bar"></div>
+          <div class="hero-phone-screen">
+            <div class="hero-phone-line red"></div>
+            <div class="hero-phone-line"></div>
+            <div class="hero-phone-line short"></div>
+            <div class="hero-phone-line"></div>
+            <div class="hero-phone-line red short"></div>
+            <div class="hero-phone-line"></div>
+            <div class="hero-phone-dot"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MÓDULO 1 -->
+    <div class="section-card visible" id="mod-intro" role="region" aria-label="M&#243;dulo: O que &#233; o ZGO">
+      <div class="card-header open" onclick="toggleCard(this)" aria-expanded="true">
+        <div class="card-icon" aria-hidden="true">&#128241;</div>
+        <div><div class="card-title">O que &#233; o ZGO?</div><div class="card-subtitle">Vis&#227;o geral do aplicativo</div></div>
+        <span class="card-time">&#9201; 3 min</span>
+        <span class="card-chevron" aria-hidden="true">&#9650;</span>
+      </div>
+      <div class="card-body open">
+        <div class="content-block">
+          <p class="video-label">&#127916; V&#237;deo Introdut&#243;rio</p>
+          <div class="video-wrapper" role="region" aria-label="V&#237;deo introdut&#243;rio do ZGO">
+            <iframe src="https://drive.google.com/file/d/1luqb0qaRNebUl66AcgsvRqf7AsWH5EWY/preview" allowfullscreen allow="autoplay" title="V&#237;deo introdut&#243;rio do aplicativo ZGO"></iframe>
+          </div>
+        </div>
+        <div class="content-block"><p>O <strong>ZGO</strong> &#233; o aplicativo desenvolvido pela nossa empresa para a <strong>coleta de pre&#231;os</strong> em estabelecimentos comerciais. Est&#225; dispon&#237;vel para <strong>Android</strong> e <strong>iOS</strong>.</p><p>Para instalar, basta pesquisar <em>"ZGO"</em> na Play Store ou App Store. O &#237;cone do aplicativo &#233; azul com a letra Z e c&#243;digo de barras &#8212; desenvolvido pela <strong>Zukkin</strong>.</p></div>
+        <div class="content-block">
+          <div class="task-row"><div class="task-dot"></div><div class="task-name">Dispon&#237;vel na <strong>Play Store</strong> (Android)</div></div>
+          <div class="task-row"><div class="task-dot"></div><div class="task-name">Dispon&#237;vel na <strong>App Store</strong> (iOS)</div></div>
+          <div class="task-row"><div class="task-dot"></div><div class="task-name">Desenvolvedor: <strong>Zukkin &#8226; Ferramentas</strong></div></div>
+        </div>
+        <div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Como instalar o aplicativo ZGO no celular?</div>
+          <div class="quiz-options" role="group">
+            <button class="quiz-option" onclick="answerQuiz(this,0,1,'intro')" data-idx="0"><span class="opt-letter">A</span>Baixar pelo link enviado pelo supervisor</button>
+            <button class="quiz-option" onclick="answerQuiz(this,1,1,'intro')" data-idx="1"><span class="opt-letter">B</span>Pesquisar "ZGO" na Play Store ou App Store</button>
+            <button class="quiz-option" onclick="answerQuiz(this,2,1,'intro')" data-idx="2"><span class="opt-letter">C</span>Acessar o site da Zukkin e fazer o download</button>
+            <button class="quiz-option" onclick="answerQuiz(this,3,1,'intro')" data-idx="3"><span class="opt-letter">D</span>Escanear o QR Code da loja</button>
+          </div>
+          <div class="quiz-feedback" id="qfb-intro" role="alert"></div>
+          <button class="quiz-retry" id="qr-intro" onclick="retryQuiz('intro')">&#8635; Tentar novamente</button>
+        </div>
+        <button class="btn-done" onclick="markDone('intro', this)" aria-label="Marcar m&#243;dulo como conclu&#237;do">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
+      </div>
+    </div>
+
+    <!-- MÓDULO 2 -->
+    <div class="section-card" id="mod-tela" role="region" aria-label="M&#243;dulo: Tela Inicial">
+      <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+        <div class="card-icon" aria-hidden="true">&#127968;</div>
+        <div><div class="card-title">Tela Inicial</div><div class="card-subtitle">Agenda semanal de pesquisas</div></div>
+        <span class="card-time">&#9201; 2 min</span>
+        <span class="card-chevron" aria-hidden="true">&#9660;</span>
+      </div>
+      <div class="card-body">
+        <div class="content-block"><p>Ap&#243;s fazer login no aplicativo, a <strong>tela inicial</strong> exibe todas as pesquisas que foram agendadas para a semana.</p><p>Cada item da lista representa uma pesquisa agendada em um estabelecimento diferente, com data, nome do mercado e endere&#231;o.</p></div>
+        <div class="phone-mock" role="img" aria-label="Simula&#231;&#227;o da tela inicial do ZGO"><div class="mock-bar"><span>Z.GO</span><span style="font-size:1.1rem;" aria-hidden="true">&#9776;</span></div><div class="mock-item"><div><div class="mock-date">QUA - 03/08</div><div class="mock-name">Copacabana - Jardim Copacabana</div><div class="mock-addr">Rua Jos&#233; Ant&#244;nio Cressoni, 119 - Araras/SP</div></div><div class="mock-arrow" aria-hidden="true">&#8250;</div></div><div class="mock-item"><div><div class="mock-date">SEX - 05/08</div><div class="mock-name">Circuito - Colombo</div><div class="mock-addr">Av Sao Gabriel, 53 - Colombo/PR</div></div><div class="mock-arrow" aria-hidden="true">&#8250;</div></div><div class="mock-item"><div><div class="mock-date">TER - 09/08</div><div class="mock-name">Amig&#227;o - Ourinhos</div><div class="mock-addr">R. Cardoso Ribeiro, 970 - Ourinhos/SP</div></div><div class="mock-arrow" aria-hidden="true">&#8250;</div></div></div>
+        <div class="content-block"><p>Ao clicar no nome do mercado, o aplicativo mostra todas as <strong>tarefas</strong> que precisam ser realizadas:</p>
+          <div class="task-row"><div class="task-dot"></div><div class="task-name">&#9989; Check-In</div><span class="task-badge pending">Antes de iniciar</span></div>
+          <div class="task-row"><div class="task-dot"></div><div class="task-name">&#128722; Pesquisa na G&#244;ndola</div><span class="task-badge pending">Durante a pesquisa</span></div>
+          <div class="task-row"><div class="task-dot"></div><div class="task-name">&#127937; Check-Out</div><span class="task-badge pending">Ao finalizar</span></div>
+        </div>
+        <div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">O que representa cada item da lista na tela inicial do ZGO?</div>
+          <div class="quiz-options" role="group">
+            <button class="quiz-option" onclick="answerQuiz(this,0,1,'tela')" data-idx="0"><span class="opt-letter">A</span>Um produto a ser coletado</button>
+            <button class="quiz-option" onclick="answerQuiz(this,1,1,'tela')" data-idx="1"><span class="opt-letter">B</span>Uma pesquisa agendada em um estabelecimento</button>
+            <button class="quiz-option" onclick="answerQuiz(this,2,1,'tela')" data-idx="2"><span class="opt-letter">C</span>Uma tarefa de sincroniza&#231;&#227;o pendente</button>
+            <button class="quiz-option" onclick="answerQuiz(this,3,1,'tela')" data-idx="3"><span class="opt-letter">D</span>Um relat&#243;rio de visita anterior</button>
+          </div>
+          <div class="quiz-feedback" id="qfb-tela" role="alert"></div>
+          <button class="quiz-retry" id="qr-tela" onclick="retryQuiz('tela')">&#8635; Tentar novamente</button>
+        </div>
+        <button class="btn-done" onclick="markDone('tela', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
+      </div>
+    </div>
+
+    <!-- MÓDULO 3 -->
+    <div class="section-card" id="mod-checkin" role="region" aria-label="M&#243;dulo: Check-In">
+      <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+        <div class="card-icon" aria-hidden="true">&#128205;</div>
+        <div><div class="card-title">Check-In</div><div class="card-subtitle">Confirma&#231;&#227;o de chegada ao estabelecimento</div></div>
+        <span class="card-time">&#9201; 3 min</span>
+        <span class="card-chevron" aria-hidden="true">&#9660;</span>
+      </div>
+      <div class="card-body">
+        <div class="content-block"><p>O <strong>check-in</strong> &#233; realizado assim que o pesquisador <strong>chega ao estabelecimento</strong>. Serve para comprovar que a pesquisa est&#225; sendo realizada no local correto.</p></div>
+        <div class="content-block"><p><strong>Passo a passo do Check-In:</strong></p>
+          <ul class="step-list" aria-label="Passos do Check-In">
+            <li><span class="step-num">1</span> Abra a tarefa correspondente ao estabelecimento no app.</li>
+            <li><span class="step-num">2</span> Toque em <strong>"Check-In"</strong> para abrir a tela.</li>
+            <li><span class="step-num">3</span> Tire uma <strong>selfie</strong> junto com a fachada do mercado.</li>
+            <li><span class="step-num">4</span> Envie as <strong>coordenadas do GPS</strong> (bot&#227;o "Atualizar localiza&#231;&#227;o").</li>
+            <li><span class="step-num">5</span> Clique no bot&#227;o <strong>"CONCLUIR"</strong> em vermelho na parte inferior da tela.</li>
+          </ul>
+        </div>
+        <div class="alert-box warning" role="note"><span class="alert-icon" aria-hidden="true">&#9888;&#65039;</span><span>A foto deve mostrar claramente a <strong>fachada do estabelecimento</strong>. Evite fotos escuras, desfocadas ou sem o nome da loja vis&#237;vel.</span></div>
+        <div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">O que deve aparecer obrigatoriamente na foto do Check-In?</div>
+          <div class="quiz-options" role="group">
+            <button class="quiz-option" onclick="answerQuiz(this,0,2,'checkin')" data-idx="0"><span class="opt-letter">A</span>O pesquisador sorrindo com o celular</button>
+            <button class="quiz-option" onclick="answerQuiz(this,1,2,'checkin')" data-idx="1"><span class="opt-letter">B</span>A etiqueta de pre&#231;o de algum produto</button>
+            <button class="quiz-option" onclick="answerQuiz(this,2,2,'checkin')" data-idx="2"><span class="opt-letter">C</span>A fachada do estabelecimento com o nome vis&#237;vel</button>
+            <button class="quiz-option" onclick="answerQuiz(this,3,2,'checkin')" data-idx="3"><span class="opt-letter">D</span>O estacionamento do mercado</button>
+          </div>
+          <div class="quiz-feedback" id="qfb-checkin" role="alert"></div>
+          <button class="quiz-retry" id="qr-checkin" onclick="retryQuiz('checkin')">&#8635; Tentar novamente</button>
+        </div>
+        <button class="btn-done" onclick="markDone('checkin', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
+      </div>
+    </div>
+
+    <!-- MÓDULO 4 -->
+    <div class="section-card" id="mod-gondola" role="region" aria-label="M&#243;dulo: Pesquisa na G&#244;ndola">
+      <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+        <div class="card-icon" aria-hidden="true">&#128722;</div>
+        <div><div class="card-title">Pesquisa na G&#244;ndola</div><div class="card-subtitle">Coleta de pre&#231;os dos produtos</div></div>
+        <span class="card-time">&#9201; 5 min</span>
+        <span class="card-chevron" aria-hidden="true">&#9660;</span>
+      </div>
+      <div class="card-body">
+        <div class="content-block"><p>A pesquisa na g&#244;ndola &#233; a <strong>coleta de pre&#231;os</strong> dos itens solicitados na lista. Utilize o filtro de setores para navegar entre as categorias de produtos.</p><p>Use o <strong>&#237;cone de filtro</strong> (parte superior direita) para visualizar e selecionar os setores dispon&#237;veis (ex.: A&#231;ougue, Bazar, Bebidas, Biscoito, Caf&#233;, etc.).</p></div>
+        <div class="content-block"><p><strong>Status dos produtos na lista:</strong></p>
+          <div class="task-row"><div class="task-dot" style="background:#ccc"></div><div class="task-name">L&#225;pis <strong>cinza</strong> &#8212; produto ainda n&#227;o coletado</div></div>
+          <div class="task-row"><div class="task-dot" style="background:var(--green)"></div><div class="task-name">L&#225;pis <strong>verde</strong> &#8212; produto j&#225; foi coletado &#10004;</div></div>
+          <div class="task-row"><div class="task-dot" style="background:var(--green)"></div><div class="task-name">Check verde ao lado do <strong>setor</strong> &#8212; setor 100% conclu&#237;do</div></div>
+        </div>
+        <div class="content-block"><p><strong>Tipos de pre&#231;o:</strong></p>
+          <div class="price-grid">
+            <div class="price-card"><div class="pc-label">Pre&#231;o Regular</div><div class="pc-desc">Pre&#231;o normal do produto no dia da pesquisa.</div></div>
+            <div class="price-card"><div class="pc-label">Pre&#231;o Validade</div><div class="pc-desc">Produto em promo&#231;&#227;o por estar pr&#243;ximo do prazo de validade.</div></div>
+            <div class="price-card"><div class="pc-label">Pre&#231;o Promo&#231;&#227;o</div><div class="pc-desc">Produto em oferta promocional comum.</div></div>
+            <div class="price-card"><div class="pc-label">Pre&#231;o Fidelidade</div><div class="pc-desc">Desconto exclusivo para portadores do cart&#227;o fidelidade do mercado.</div></div>
+          </div>
+        </div>
+        <div class="alert-box danger" role="alert"><span class="alert-icon" aria-hidden="true">&#128680;</span><div><strong>Regras importantes sobre pre&#231;os:</strong><br>&#8226; Ao preencher <strong>Pre&#231;o Promo&#231;&#227;o</strong>, <u>N&#195;O preencha</u> o campo Regular.<br>&#8226; Ao preencher <strong>Pre&#231;o Validade</strong>, <u>N&#195;O preencha</u> o campo Regular.<br>&#8226; Quando houver <strong>Pre&#231;o Fidelidade junto ao regular</strong>, preencha o regular como <strong>PROMO&#199;&#195;O</strong>.</div></div>
+        <div class="content-block"><p><strong>Foto de auditoria (quando solicitada):</strong></p>
+          <ul class="step-list">
+            <li><span class="step-num">1</span>A foto &#233; pedida apenas em <strong>alguns produtos</strong> &#8212; n&#227;o em todos.</li>
+            <li><span class="step-num">2</span>Fotografe somente a <strong>etiqueta do produto</strong> (n&#227;o &#233; necess&#225;rio mostrar o produto em si).</li>
+            <li><span class="step-num">3</span>A foto deve ser tirada o mais <strong>pr&#243;ximo poss&#237;vel da etiqueta</strong>, deixando nome, pre&#231;o e EAN leg&#237;veis.</li>
+            <li><span class="step-num">4</span>Se precisar corrigir, clique em <strong>"Enviar foto"</strong> novamente para reabrir a c&#226;mera.</li>
+            <li><span class="step-num">5</span>Ap&#243;s preencher pre&#231;o e foto, clique em <strong>"CONCLUIR"</strong>.</li>
+          </ul>
+        </div>
+        <div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Se um produto est&#225; em promo&#231;&#227;o, como voc&#234; deve preencher os campos de pre&#231;o?</div>
+          <div class="quiz-options" role="group">
+            <button class="quiz-option" onclick="answerQuiz(this,0,1,'gondola')" data-idx="0"><span class="opt-letter">A</span>Preencher Regular e Promo&#231;&#227;o ao mesmo tempo</button>
+            <button class="quiz-option" onclick="answerQuiz(this,1,1,'gondola')" data-idx="1"><span class="opt-letter">B</span>Preencher apenas o campo Pre&#231;o Promo&#231;&#227;o, deixando o Regular em branco</button>
+            <button class="quiz-option" onclick="answerQuiz(this,2,1,'gondola')" data-idx="2"><span class="opt-letter">C</span>Preencher apenas o Regular com o valor promocional</button>
+            <button class="quiz-option" onclick="answerQuiz(this,3,1,'gondola')" data-idx="3"><span class="opt-letter">D</span>Deixar todos os campos em branco e fazer uma foto</button>
+          </div>
+          <div class="quiz-feedback" id="qfb-gondola" role="alert"></div>
+          <button class="quiz-retry" id="qr-gondola" onclick="retryQuiz('gondola')">&#8635; Tentar novamente</button>
+        </div>
+        <button class="btn-done" onclick="markDone('gondola', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
+      </div>
+    </div>
+
+    <!-- MÓDULO 5 -->
+    <div class="section-card" id="mod-checkout" role="region" aria-label="M&#243;dulo: Check-Out">
+      <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+        <div class="card-icon" aria-hidden="true">&#127937;</div>
+        <div><div class="card-title">Check-Out</div><div class="card-subtitle">Confirma&#231;&#227;o de sa&#237;da do estabelecimento</div></div>
+        <span class="card-time">&#9201; 2 min</span>
+        <span class="card-chevron" aria-hidden="true">&#9660;</span>
+      </div>
+      <div class="card-body">
+        <div class="content-block"><p>O <strong>check-out</strong> &#233; realizado assim que o pesquisador <strong>finaliza a pesquisa e vai embora</strong> do estabelecimento.</p><p>O processo &#233; <strong>id&#234;ntico ao do check-in</strong>: selfie com a fachada + envio das coordenadas GPS + clicar em "CONCLUIR".</p></div>
+        <div class="definition-grid">
+          <div class="def-card"><div class="def-label">&#128205; Check-In</div><p>Realizado ao <strong>chegar</strong> no estabelecimento, antes de iniciar a pesquisa.</p></div>
+          <div class="def-card"><div class="def-label">&#127937; Check-Out</div><p>Realizado ao <strong>terminar</strong> a pesquisa, antes de sair do estabelecimento.</p></div>
+        </div>
+        <div class="alert-box success" role="note"><span class="alert-icon" aria-hidden="true">&#9989;</span><span>Ao finalizar todas as tarefas de uma pesquisa, o aplicativo exibir&#225; o aviso <strong>"Conclu&#237;do"</strong> ao lado do nome da tarefa, e a pesquisa ser&#225; separada na lista como <strong>"Agenda conclu&#237;da"</strong>.</span></div>
+        <div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Qual &#233; a diferen&#231;a entre Check-In e Check-Out?</div>
+          <div class="quiz-options" role="group">
+            <button class="quiz-option" onclick="answerQuiz(this,0,1,'checkout')" data-idx="0"><span class="opt-letter">A</span>O Check-In usa GPS e o Check-Out n&#227;o</button>
+            <button class="quiz-option" onclick="answerQuiz(this,1,1,'checkout')" data-idx="1"><span class="opt-letter">B</span>S&#227;o processos id&#234;nticos, mas realizados em momentos diferentes: chegada e sa&#237;da</button>
+            <button class="quiz-option" onclick="answerQuiz(this,2,1,'checkout')" data-idx="2"><span class="opt-letter">C</span>O Check-Out n&#227;o precisa de selfie com a fachada</button>
+            <button class="quiz-option" onclick="answerQuiz(this,3,1,'checkout')" data-idx="3"><span class="opt-letter">D</span>O Check-In &#233; feito pelo pesquisador e o Check-Out pelo supervisor</button>
+          </div>
+          <div class="quiz-feedback" id="qfb-checkout" role="alert"></div>
+          <button class="quiz-retry" id="qr-checkout" onclick="retryQuiz('checkout')">&#8635; Tentar novamente</button>
+        </div>
+        <button class="btn-done" onclick="markDone('checkout', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
+      </div>
+    </div>
+
+    <!-- MÓDULO 6 -->
+    <div class="section-card" id="mod-sync" role="region" aria-label="M&#243;dulo: Sincroniza&#231;&#227;o">
+      <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+        <div class="card-icon" aria-hidden="true">&#128260;</div>
+        <div><div class="card-title">Sincroniza&#231;&#227;o</div><div class="card-subtitle">Envio obrigat&#243;rio dos dados coletados</div></div>
+        <span class="card-time">&#9201; 4 min</span>
+        <span class="card-chevron" aria-hidden="true">&#9660;</span>
+      </div>
+      <div class="card-body">
+        <div class="content-block"><p>Ao finalizar uma tarefa, &#233; <strong>obrigat&#243;rio sincronizar</strong> o aplicativo para garantir que todos os dados foram enviados corretamente.</p></div>
+        <div class="content-block"><p><strong>Sincroniza&#231;&#227;o padr&#227;o (ap&#243;s cada tarefa):</strong></p>
+          <ol class="sync-steps">
+            <li>Acesse o menu (&#237;cone &#9776; no canto superior direito).</li>
+            <li>Toque no bot&#227;o vermelho <strong>"Status"</strong> na parte inferior da tela.</li>
+            <li>O app perguntar&#225; <em>"Gostaria de sincronizar agora?"</em> &#8212; clique em <strong>SIM</strong>.</li>
+            <li>Aguarde a mensagem <strong>"Sucesso &#8212; Tarefas sincronizadas!"</strong>.</li>
+          </ol>
+        </div>
+        <div class="content-block"><p><strong>Sincroniza&#231;&#227;o total (ao concluir TODAS as tarefas da agenda):</strong></p>
+          <ol class="sync-steps">
+            <li>Toque nos <strong>3 tracinhos (&#9776;)</strong> no canto superior direito.</li>
+            <li>Na tela do menu, clique em <strong>"Re-enviar dados"</strong>.</li>
+            <li>Voc&#234; ser&#225; direcionado &#224; tela <em>"Re-enviar Tarefas"</em> &#8212; toque em <strong>"Enviar dados"</strong> e <strong>"Enviar fotos"</strong> para cada tarefa listada.</li>
+            <li>Volte ao menu e acesse <strong>"Status"</strong> para verificar as pend&#234;ncias.</li>
+          </ol>
+        </div>
+        <div class="content-block"><p><strong>Verificando o Status:</strong></p>
+          <div class="task-row"><div class="task-dot" style="background:var(--green)"></div><div class="task-name"><strong>0 tarefas pendentes / 0 zips pendentes</strong> &#8594; pode finalizar &#10004;</div></div>
+          <div class="task-row"><div class="task-dot" style="background:var(--red)"></div><div class="task-name"><strong>Pend&#234;ncias existentes</strong> &#8594; sincronize novamente com a tela ligada</div></div>
+        </div>
+        <div class="alert-box danger" role="alert"><span class="alert-icon" aria-hidden="true">&#128680;</span><div><strong>Em caso de erro ao reenviar:</strong><br>Fa&#231;a o <strong>Upload</strong> de todas as tarefas listadas. Se ainda ficarem pendentes, clique em <strong>Download</strong> e envie o arquivo via <strong>WhatsApp</strong> para o analista respons&#225;vel pela sua regi&#227;o.</div></div>
+        <div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Ap&#243;s concluir TODAS as tarefas da agenda, qual &#233; o processo de sincroniza&#231;&#227;o correto?</div>
+          <div class="quiz-options" role="group">
+            <button class="quiz-option" onclick="answerQuiz(this,0,2,'sync')" data-idx="0"><span class="opt-letter">A</span>Apenas tocar em "Status" no menu principal</button>
+            <button class="quiz-option" onclick="answerQuiz(this,1,2,'sync')" data-idx="1"><span class="opt-letter">B</span>Fechar o aplicativo e reabrir</button>
+            <button class="quiz-option" onclick="answerQuiz(this,2,2,'sync')" data-idx="2"><span class="opt-letter">C</span>Acessar &#9776; &#8594; Re-enviar dados &#8594; Enviar dados e fotos &#8594; verificar Status</button>
+            <button class="quiz-option" onclick="answerQuiz(this,3,2,'sync')" data-idx="3"><span class="opt-letter">D</span>Enviar um WhatsApp para o supervisor confirmando a conclus&#227;o</button>
+          </div>
+          <div class="quiz-feedback" id="qfb-sync" role="alert"></div>
+          <button class="quiz-retry" id="qr-sync" onclick="retryQuiz('sync')">&#8635; Tentar novamente</button>
+        </div>
+        <button class="btn-done" onclick="markDone('sync', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
+      </div>
+    </div>
+
+    <!-- MÓDULO 7 -->
+    <div class="section-card" id="mod-kindle" role="region" aria-label="M&#243;dulo: Kindle">
+      <div class="card-header" onclick="toggleCard(this)" aria-expanded="false">
+        <div class="card-icon" aria-hidden="true">&#128223;</div>
+        <div><div class="card-title">Kindle (Busca Pre&#231;o)</div><div class="card-subtitle">Uso do dispositivo Kindle em lojas autorizadas</div></div>
+        <span class="card-time">&#9201; 3 min</span>
+        <span class="card-chevron" aria-hidden="true">&#9660;</span>
+      </div>
+      <div class="card-body">
+        <div class="content-block"><p>O uso do <strong>Kindle</strong> para pesquisa (Busca Pre&#231;o) &#233; <strong>permitido somente em lojas autorizadas</strong> e com <strong>autoriza&#231;&#227;o pr&#233;via do supervisor</strong>.</p></div>
+        <div class="alert-box warning" role="note"><span class="alert-icon" aria-hidden="true">&#9888;&#65039;</span><span>As pesquisas com Kindle <strong>s&#243; podem ser realizadas com autoriza&#231;&#227;o pr&#233;via</strong> do seu supervisor. Nunca utilize sem essa confirma&#231;&#227;o.</span></div>
+        <div class="content-block"><p><strong>Diferen&#231;a em rela&#231;&#227;o &#224; pesquisa normal:</strong></p>
+          <ul class="step-list">
+            <li><span class="step-num">1</span>O fluxo &#233; o mesmo: <strong>Check-In &#8594; Pesquisa &#8594; Check-Out</strong>.</li>
+            <li><span class="step-num">2</span>H&#225; uma tarefa adicional chamada <strong>"Auditoria Final"</strong>, realizada ap&#243;s as pesquisas do Busca Pre&#231;o &#8212; <strong>nunca deve ser esquecida</strong>.</li>
+            <li><span class="step-num">3</span>Para identificar o arquivo do Kindle correto para a loja, observe o nome exibido na tarefa. Exemplo: <code>Zukkin_2424000</code>.</li>
+          </ul>
+        </div>
+        <div class="alert-box danger" role="alert"><span class="alert-icon" aria-hidden="true">&#128680;</span><span>A <strong>Auditoria Final</strong> &#233; obrigat&#243;ria e deve ser executada ap&#243;s todas as pesquisas do Busca Pre&#231;o. N&#227;o encerre a pesquisa sem realiz&#225;-la.</span></div>
+        <div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Qual tarefa &#233; exclusiva das pesquisas com Kindle (Busca Pre&#231;o)?</div>
+          <div class="quiz-options" role="group">
+            <button class="quiz-option" onclick="answerQuiz(this,0,1,'kindle')" data-idx="0"><span class="opt-letter">A</span>Check-In especial com c&#243;digo QR</button>
+            <button class="quiz-option" onclick="answerQuiz(this,1,1,'kindle')" data-idx="1"><span class="opt-letter">B</span>Auditoria Final, realizada ap&#243;s todas as pesquisas do Busca Pre&#231;o</button>
+            <button class="quiz-option" onclick="answerQuiz(this,2,1,'kindle')" data-idx="2"><span class="opt-letter">C</span>Sincroniza&#231;&#227;o dupla ao final</button>
+            <button class="quiz-option" onclick="answerQuiz(this,3,1,'kindle')" data-idx="3"><span class="opt-letter">D</span>Foto de embalagem de todos os produtos</button>
+          </div>
+          <div class="quiz-feedback" id="qfb-kindle" role="alert"></div>
+          <button class="quiz-retry" id="qr-kindle" onclick="retryQuiz('kindle')">&#8635; Tentar novamente</button>
+        </div>
+        <button class="btn-done" onclick="markDone('kindle', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
+      </div>
+    </div>
+
+    <!-- TELA DE CONCLUSÃO -->
+    <div id="finish-screen" role="region" aria-label="Treinamento conclu&#237;do">
+      <span class="finish-icon" aria-hidden="true">&#127891;</span>
+      <h2>Treinamento Conclu&#237;do!</h2>
+      <p>Voc&#234; revisou todos os m&#243;dulos do Aplicativo ZGO com sucesso.<br>Em caso de d&#250;vidas, consulte seu supervisor ou analista de regi&#227;o.</p>
+      <div id="finish-score" class="finish-score" aria-live="polite">&#127942; 0 de 7 quest&#245;es corretas</div>
+      <div class="finish-modules-summary">
+        <span class="finish-pill">&#128241; O que &#233; o ZGO</span>
+        <span class="finish-pill">&#127968; Tela Inicial</span>
+        <span class="finish-pill">&#128205; Check-In</span>
+        <span class="finish-pill">&#128722; Pesquisa na G&#244;ndola</span>
+        <span class="finish-pill">&#127937; Check-Out</span>
+        <span class="finish-pill">&#128260; Sincroniza&#231;&#227;o</span>
+        <span class="finish-pill">&#128223; Kindle</span>
+      </div>
+      <button class="finish-cta" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593; Revisar o treinamento</button>
+    </div>
+  </main>
 </div>
-<!-- ✅ BOTÕES DE DOWNLOAD -->
-<div class="store-buttons">
-<a href="https://play.google.com/store/apps/details?id=com.zgo" target="_blank" class="store-btn">
-<span class="store-btn-icon">&#129302;</span>
-<div class="store-btn-text">
-<span class="store-btn-sub">Dispon&#237;vel no</span>
-<span class="store-btn-name">Google Play</span>
-</div>
-</a>
-<a href="https://apps.apple.com/us/app/zgo/id1575626739" target="_blank" class="store-btn">
-<i class="fa-brands fa-apple store-btn-icon" style="font-size:1.8rem; color:#fff;"></i>
-<div class="store-btn-text">
-<span class="store-btn-sub">Baixe na</span>
-<span class="store-btn-name">App Store</span>
-</div>
-</a>
-</div>
-</div>
 
-<!-- ======= MÓDULO 1: O QUE É O ZGO ======= -->
-<div class="section-card visible" id="mod-intro">
-<div class="card-header open" onclick="toggleCard(this)">
-<div class="card-icon">&#128241;</div>
-<div><div class="card-title">O que &#233; o ZGO?</div><div class="card-subtitle">Vis&#227;o geral do aplicativo</div></div>
-<span class="card-chevron">&#9650;</span>
-</div>
-<div class="card-body open">
-
-<!-- ✅ VÍDEO GOOGLE DRIVE -->
-<div class="content-block">
-<p class="video-label">&#127916; V&#237;deo Introdut&#243;rio</p>
-<div class="video-wrapper">
-<iframe src="https://drive.google.com/file/d/1luqb0qaRNebUl66AcgsvRqf7AsWH5EWY/preview" allowfullscreen allow="autoplay"></iframe>
-</div>
-</div>
-
-<div class="content-block"><p>O <strong>ZGO</strong> &#233; o aplicativo desenvolvido pela nossa empresa para a <strong>coleta de pre&#231;os</strong> em estabelecimentos comerciais. Est&#225; dispon&#237;vel para <strong>Android</strong> e <strong>iOS</strong>.</p><p>Para instalar, basta pesquisar <em>"ZGO"</em> na Play Store ou App Store. O &#237;cone do aplicativo &#233; azul com a letra Z e c&#243;digo de barras &#8212; desenvolvido pela <strong>Zukkin</strong>.</p></div>
-<div class="content-block"><div class="task-row"><div class="task-dot"></div><div class="task-name">Dispon&#237;vel na <strong>Play Store</strong> (Android)</div></div><div class="task-row"><div class="task-dot"></div><div class="task-name">Dispon&#237;vel na <strong>App Store</strong> (iOS)</div></div><div class="task-row"><div class="task-dot"></div><div class="task-name">Desenvolvedor: <strong>Zukkin &#8226; Ferramentas</strong></div></div></div>
-<div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Como instalar o aplicativo ZGO no celular?</div><div class="quiz-options"><button class="quiz-option" onclick="answerQuiz(this,0,1,'intro')" data-idx="0"><span class="opt-letter">A</span>Baixar pelo link enviado pelo supervisor</button><button class="quiz-option" onclick="answerQuiz(this,1,1,'intro')" data-idx="1"><span class="opt-letter">B</span>Pesquisar "ZGO" na Play Store ou App Store</button><button class="quiz-option" onclick="answerQuiz(this,2,1,'intro')" data-idx="2"><span class="opt-letter">C</span>Acessar o site da Zukkin e fazer o download</button><button class="quiz-option" onclick="answerQuiz(this,3,1,'intro')" data-idx="3"><span class="opt-letter">D</span>Escanear o QR Code da loja</button></div><div class="quiz-feedback" id="qfb-intro"></div><button class="quiz-retry" id="qr-intro" onclick="retryQuiz('intro')">&#8635; Tentar novamente</button></div>
-<button class="btn-done" onclick="markDone('intro', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
-</div></div>
-
-<!-- ======= MÓDULO 2: TELA INICIAL ======= -->
-<div class="section-card" id="mod-tela">
-<div class="card-header" onclick="toggleCard(this)"><div class="card-icon">&#127968;</div><div><div class="card-title">Tela Inicial</div><div class="card-subtitle">Agenda semanal de pesquisas</div></div><span class="card-chevron">&#9660;</span></div>
-<div class="card-body">
-<div class="content-block"><p>Ap&#243;s fazer login no aplicativo, a <strong>tela inicial</strong> exibe todas as pesquisas que foram agendadas para a semana.</p><p>Cada item da lista representa uma pesquisa agendada em um estabelecimento diferente, com data, nome do mercado e endere&#231;o.</p></div>
-<div class="phone-mock"><div class="mock-bar"><span>Z.GO</span><span style="font-size:1.1rem;cursor:pointer;">&#9776;</span></div><div class="mock-item"><div><div class="mock-date">QUA - 03/08</div><div class="mock-name">Copacabana - Jardim Copacabana</div><div class="mock-addr">Rua Jos&#233; Ant&#244;nio Cressoni, 119 - Araras/SP</div></div><div class="mock-arrow">&#8250;</div></div><div class="mock-item"><div><div class="mock-date">SEX - 05/08</div><div class="mock-name">Circuito - Colombo</div><div class="mock-addr">Av Sao Gabriel, 53 - Colombo/PR</div></div><div class="mock-arrow">&#8250;</div></div><div class="mock-item"><div><div class="mock-date">TER - 09/08</div><div class="mock-name">Amig&#227;o - Ourinhos</div><div class="mock-addr">R. Cardoso Ribeiro, 970 - Ourinhos/SP</div></div><div class="mock-arrow">&#8250;</div></div></div>
-<div class="content-block"><p>Ao clicar no nome do mercado, o aplicativo mostra todas as <strong>tarefas</strong> que precisam ser realizadas:</p><div class="task-row"><div class="task-dot"></div><div class="task-name">&#9989; Check-In</div><span class="task-badge pending">Antes de iniciar</span></div><div class="task-row"><div class="task-dot"></div><div class="task-name">&#128722; Pesquisa na G&#244;ndola</div><span class="task-badge pending">Durante a pesquisa</span></div><div class="task-row"><div class="task-dot"></div><div class="task-name">&#127937; Check-Out</div><span class="task-badge pending">Ao finalizar</span></div></div>
-<div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">O que representa cada item da lista na tela inicial do ZGO?</div><div class="quiz-options"><button class="quiz-option" onclick="answerQuiz(this,0,1,'tela')" data-idx="0"><span class="opt-letter">A</span>Um produto a ser coletado</button><button class="quiz-option" onclick="answerQuiz(this,1,1,'tela')" data-idx="1"><span class="opt-letter">B</span>Uma pesquisa agendada em um estabelecimento</button><button class="quiz-option" onclick="answerQuiz(this,2,1,'tela')" data-idx="2"><span class="opt-letter">C</span>Uma tarefa de sincroniza&#231;&#227;o pendente</button><button class="quiz-option" onclick="answerQuiz(this,3,1,'tela')" data-idx="3"><span class="opt-letter">D</span>Um relat&#243;rio de visita anterior</button></div><div class="quiz-feedback" id="qfb-tela"></div><button class="quiz-retry" id="qr-tela" onclick="retryQuiz('tela')">&#8635; Tentar novamente</button></div>
-<button class="btn-done" onclick="markDone('tela', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button>
-</div></div>
-
-<!-- ======= MÓDULO 3: CHECK-IN ======= -->
-<div class="section-card" id="mod-checkin"><div class="card-header" onclick="toggleCard(this)"><div class="card-icon">&#128205;</div><div><div class="card-title">Check-In</div><div class="card-subtitle">Confirma&#231;&#227;o de chegada ao estabelecimento</div></div><span class="card-chevron">&#9660;</span></div>
-<div class="card-body"><div class="content-block"><p>O <strong>check-in</strong> &#233; realizado assim que o pesquisador <strong>chega ao estabelecimento</strong>. Serve para comprovar que a pesquisa est&#225; sendo realizada no local correto.</p></div>
-<div class="content-block"><p><strong>Passo a passo do Check-In:</strong></p><ul class="step-list"><li><span class="step-num">1</span> Abra a tarefa correspondente ao estabelecimento no app.</li><li><span class="step-num">2</span> Toque em <strong>"Check-In"</strong> para abrir a tela.</li><li><span class="step-num">3</span> Tire uma <strong>selfie</strong> junto com a fachada do mercado.</li><li><span class="step-num">4</span> Envie as <strong>coordenadas do GPS</strong> (bot&#227;o "Atualizar localiza&#231;&#227;o").</li><li><span class="step-num">5</span> Clique no bot&#227;o <strong>"CONCLUIR"</strong> em vermelho na parte inferior da tela.</li></ul></div>
-<div class="alert-box warning"><span class="alert-icon">&#9888;&#65039;</span><span>A foto deve mostrar claramente a <strong>fachada do estabelecimento</strong>. Evite fotos escuras, desfocadas ou sem o nome da loja vis&#237;vel.</span></div>
-<div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">O que deve aparecer obrigatoriamente na foto do Check-In?</div><div class="quiz-options"><button class="quiz-option" onclick="answerQuiz(this,0,2,'checkin')" data-idx="0"><span class="opt-letter">A</span>O pesquisador sorrindo com o celular</button><button class="quiz-option" onclick="answerQuiz(this,1,2,'checkin')" data-idx="1"><span class="opt-letter">B</span>A etiqueta de pre&#231;o de algum produto</button><button class="quiz-option" onclick="answerQuiz(this,2,2,'checkin')" data-idx="2"><span class="opt-letter">C</span>A fachada do estabelecimento com o nome vis&#237;vel</button><button class="quiz-option" onclick="answerQuiz(this,3,2,'checkin')" data-idx="3"><span class="opt-letter">D</span>O estacionamento do mercado</button></div><div class="quiz-feedback" id="qfb-checkin"></div><button class="quiz-retry" id="qr-checkin" onclick="retryQuiz('checkin')">&#8635; Tentar novamente</button></div>
-<button class="btn-done" onclick="markDone('checkin', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button></div></div>
-
-<!-- ======= MÓDULO 4: GONDOLA ======= -->
-<div class="section-card" id="mod-gondola"><div class="card-header" onclick="toggleCard(this)"><div class="card-icon">&#128722;</div><div><div class="card-title">Pesquisa na G&#244;ndola</div><div class="card-subtitle">Coleta de pre&#231;os dos produtos</div></div><span class="card-chevron">&#9660;</span></div>
-<div class="card-body"><div class="content-block"><p>A pesquisa na g&#244;ndola &#233; a <strong>coleta de pre&#231;os</strong> dos itens solicitados na lista. Utilize o filtro de setores para navegar entre as categorias de produtos.</p><p>Use o <strong>&#237;cone de filtro</strong> (parte superior direita) para visualizar e selecionar os setores dispon&#237;veis (ex.: A&#231;ougue, Bazar, Bebidas, Biscoito, Caf&#233;, etc.).</p></div>
-<div class="content-block"><p><strong>Status dos produtos na lista:</strong></p><div class="task-row"><div class="task-dot" style="background:#ccc"></div><div class="task-name">L&#225;pis <strong>cinza</strong> &#8212; produto ainda n&#227;o coletado</div></div><div class="task-row"><div class="task-dot" style="background:var(--green)"></div><div class="task-name">L&#225;pis <strong>verde</strong> &#8212; produto j&#225; foi coletado &#10004;</div></div><div class="task-row"><div class="task-dot" style="background:var(--green)"></div><div class="task-name">Check verde ao lado do <strong>setor</strong> &#8212; setor 100% conclu&#237;do</div></div></div>
-<div class="content-block"><p><strong>Tipos de pre&#231;o:</strong></p><div class="price-grid"><div class="price-card"><div class="pc-label">Pre&#231;o Regular</div><div class="pc-desc">Pre&#231;o normal do produto no dia da pesquisa.</div></div><div class="price-card"><div class="pc-label">Pre&#231;o Validade</div><div class="pc-desc">Produto em promo&#231;&#227;o por estar pr&#243;ximo do prazo de validade.</div></div><div class="price-card"><div class="pc-label">Pre&#231;o Promo&#231;&#227;o</div><div class="pc-desc">Produto em oferta promocional comum.</div></div><div class="price-card"><div class="pc-label">Pre&#231;o Fidelidade</div><div class="pc-desc">Desconto exclusivo para portadores do cart&#227;o fidelidade do mercado.</div></div></div></div>
-<div class="alert-box danger"><span class="alert-icon">&#128680;</span><div><strong>Regras importantes sobre pre&#231;os:</strong><br>&#8226; Ao preencher <strong>Pre&#231;o Promo&#231;&#227;o</strong>, <u>N&#195;O preencha</u> o campo Regular.<br>&#8226; Ao preencher <strong>Pre&#231;o Validade</strong>, <u>N&#195;O preencha</u> o campo Regular.<br>&#8226; Quando houver <strong>Pre&#231;o Fidelidade junto ao regular</strong>, preencha o regular como <strong>PROMO&#199;&#195;O</strong>.</div></div>
-<div class="content-block"><p><strong>Foto de auditoria (quando solicitada):</strong></p><ul class="step-list"><li><span class="step-num">1</span>A foto &#233; pedida apenas em <strong>alguns produtos</strong> &#8212; n&#227;o em todos.</li><li><span class="step-num">2</span>Fotografe somente a <strong>etiqueta do produto</strong> (n&#227;o &#233; necess&#225;rio mostrar o produto em si).</li><li><span class="step-num">3</span>A foto deve ser tirada o mais <strong>pr&#243;ximo poss&#237;vel da etiqueta</strong>, deixando nome, pre&#231;o e EAN leg&#237;veis.</li><li><span class="step-num">4</span>Se precisar corrigir, clique em <strong>"Enviar foto"</strong> novamente para reabrir a c&#226;mera.</li><li><span class="step-num">5</span>Ap&#243;s preencher pre&#231;o e foto, clique em <strong>"CONCLUIR"</strong>.</li></ul></div>
-<div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Se um produto est&#225; em promo&#231;&#227;o, como voc&#234; deve preencher os campos de pre&#231;o?</div><div class="quiz-options"><button class="quiz-option" onclick="answerQuiz(this,0,1,'gondola')" data-idx="0"><span class="opt-letter">A</span>Preencher Regular e Promo&#231;&#227;o ao mesmo tempo</button><button class="quiz-option" onclick="answerQuiz(this,1,1,'gondola')" data-idx="1"><span class="opt-letter">B</span>Preencher apenas o campo Pre&#231;o Promo&#231;&#227;o, deixando o Regular em branco</button><button class="quiz-option" onclick="answerQuiz(this,2,1,'gondola')" data-idx="2"><span class="opt-letter">C</span>Preencher apenas o Regular com o valor promocional</button><button class="quiz-option" onclick="answerQuiz(this,3,1,'gondola')" data-idx="3"><span class="opt-letter">D</span>Deixar todos os campos em branco e fazer uma foto</button></div><div class="quiz-feedback" id="qfb-gondola"></div><button class="quiz-retry" id="qr-gondola" onclick="retryQuiz('gondola')">&#8635; Tentar novamente</button></div>
-<button class="btn-done" onclick="markDone('gondola', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button></div></div>
-
-<!-- ======= MÓDULO 5: CHECK-OUT ======= -->
-<div class="section-card" id="mod-checkout"><div class="card-header" onclick="toggleCard(this)"><div class="card-icon">&#127937;</div><div><div class="card-title">Check-Out</div><div class="card-subtitle">Confirma&#231;&#227;o de sa&#237;da do estabelecimento</div></div><span class="card-chevron">&#9660;</span></div>
-<div class="card-body"><div class="content-block"><p>O <strong>check-out</strong> &#233; realizado assim que o pesquisador <strong>finaliza a pesquisa e vai embora</strong> do estabelecimento.</p><p>O processo &#233; <strong>id&#234;ntico ao do check-in</strong>: selfie com a fachada + envio das coordenadas GPS + clicar em "CONCLUIR".</p></div>
-<div class="definition-grid"><div class="def-card"><div class="def-label">&#128205; Check-In</div><p>Realizado ao <strong>chegar</strong> no estabelecimento, antes de iniciar a pesquisa.</p></div><div class="def-card"><div class="def-label">&#127937; Check-Out</div><p>Realizado ao <strong>terminar</strong> a pesquisa, antes de sair do estabelecimento.</p></div></div>
-<div class="alert-box success"><span class="alert-icon">&#9989;</span><span>Ao finalizar todas as tarefas de uma pesquisa, o aplicativo exibir&#225; o aviso <strong>"Conclu&#237;do"</strong> ao lado do nome da tarefa, e a pesquisa ser&#225; separada na lista como <strong>"Agenda conclu&#237;da"</strong>.</span></div>
-<div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Qual &#233; a diferen&#231;a entre Check-In e Check-Out?</div><div class="quiz-options"><button class="quiz-option" onclick="answerQuiz(this,0,1,'checkout')" data-idx="0"><span class="opt-letter">A</span>O Check-In usa GPS e o Check-Out n&#227;o</button><button class="quiz-option" onclick="answerQuiz(this,1,1,'checkout')" data-idx="1"><span class="opt-letter">B</span>S&#227;o processos id&#234;nticos, mas realizados em momentos diferentes: chegada e sa&#237;da</button><button class="quiz-option" onclick="answerQuiz(this,2,1,'checkout')" data-idx="2"><span class="opt-letter">C</span>O Check-Out n&#227;o precisa de selfie com a fachada</button><button class="quiz-option" onclick="answerQuiz(this,3,1,'checkout')" data-idx="3"><span class="opt-letter">D</span>O Check-In &#233; feito pelo pesquisador e o Check-Out pelo supervisor</button></div><div class="quiz-feedback" id="qfb-checkout"></div><button class="quiz-retry" id="qr-checkout" onclick="retryQuiz('checkout')">&#8635; Tentar novamente</button></div>
-<button class="btn-done" onclick="markDone('checkout', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button></div></div>
-
-<!-- ======= MÓDULO 6: SINCRONIZAÇÃO ======= -->
-<div class="section-card" id="mod-sync"><div class="card-header" onclick="toggleCard(this)"><div class="card-icon">&#128260;</div><div><div class="card-title">Sincroniza&#231;&#227;o</div><div class="card-subtitle">Envio obrigat&#243;rio dos dados coletados</div></div><span class="card-chevron">&#9660;</span></div>
-<div class="card-body"><div class="content-block"><p>Ao finalizar uma tarefa, &#233; <strong>obrigat&#243;rio sincronizar</strong> o aplicativo para garantir que todos os dados foram enviados corretamente.</p></div>
-<div class="content-block"><p><strong>Sincroniza&#231;&#227;o padr&#227;o (ap&#243;s cada tarefa):</strong></p><ol class="sync-steps"><li>Acesse o menu (&#237;cone &#9776; no canto superior direito).</li><li>Toque no bot&#227;o vermelho <strong>"Status"</strong> na parte inferior da tela.</li><li>O app perguntar&#225; <em>"Gostaria de sincronizar agora?"</em> &#8212; clique em <strong>SIM</strong>.</li><li>Aguarde a mensagem <strong>"Sucesso &#8212; Tarefas sincronizadas!"</strong>.</li></ol></div>
-<div class="content-block"><p><strong>Sincroniza&#231;&#227;o total (ao concluir TODAS as tarefas da agenda):</strong></p><ol class="sync-steps"><li>Toque nos <strong>3 tracinhos (&#9776;)</strong> no canto superior direito.</li><li>Na tela do menu, clique em <strong>"Re-enviar dados"</strong>.</li><li>Voc&#234; ser&#225; direcionado &#224; tela <em>"Re-enviar Tarefas"</em> &#8212; toque em <strong>"Enviar dados"</strong> e <strong>"Enviar fotos"</strong> para cada tarefa listada.</li><li>Volte ao menu e acesse <strong>"Status"</strong> para verificar as pend&#234;ncias.</li></ol></div>
-<div class="content-block"><p><strong>Verificando o Status:</strong></p><div class="task-row"><div class="task-dot" style="background:var(--green)"></div><div class="task-name"><strong>0 tarefas pendentes / 0 zips pendentes</strong> &#8594; pode finalizar &#10004;</div></div><div class="task-row"><div class="task-dot" style="background:var(--red)"></div><div class="task-name"><strong>Pend&#234;ncias existentes</strong> &#8594; sincronize novamente com a tela ligada</div></div></div>
-<div class="alert-box danger"><span class="alert-icon">&#128680;</span><div><strong>Em caso de erro ao reenviar:</strong><br>Fa&#231;a o <strong>Upload</strong> de todas as tarefas listadas. Se ainda ficarem pendentes, clique em <strong>Download</strong> e envie o arquivo via <strong>WhatsApp</strong> para o analista respons&#225;vel pela sua regi&#227;o.</div></div>
-<div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Ap&#243;s concluir TODAS as tarefas da agenda, qual &#233; o processo de sincroniza&#231;&#227;o correto?</div><div class="quiz-options"><button class="quiz-option" onclick="answerQuiz(this,0,2,'sync')" data-idx="0"><span class="opt-letter">A</span>Apenas tocar em "Status" no menu principal</button><button class="quiz-option" onclick="answerQuiz(this,1,2,'sync')" data-idx="1"><span class="opt-letter">B</span>Fechar o aplicativo e reabrir</button><button class="quiz-option" onclick="answerQuiz(this,2,2,'sync')" data-idx="2"><span class="opt-letter">C</span>Acessar &#9776; &#8594; Re-enviar dados &#8594; Enviar dados e fotos &#8594; verificar Status</button><button class="quiz-option" onclick="answerQuiz(this,3,2,'sync')" data-idx="3"><span class="opt-letter">D</span>Enviar um WhatsApp para o supervisor confirmando a conclus&#227;o</button></div><div class="quiz-feedback" id="qfb-sync"></div><button class="quiz-retry" id="qr-sync" onclick="retryQuiz('sync')">&#8635; Tentar novamente</button></div>
-<button class="btn-done" onclick="markDone('sync', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button></div></div>
-
-<!-- ======= MÓDULO 7: KINDLE ======= -->
-<div class="section-card" id="mod-kindle"><div class="card-header" onclick="toggleCard(this)"><div class="card-icon">&#128223;</div><div><div class="card-title">Kindle (Busca Pre&#231;o)</div><div class="card-subtitle">Uso do dispositivo Kindle em lojas autorizadas</div></div><span class="card-chevron">&#9660;</span></div>
-<div class="card-body"><div class="content-block"><p>O uso do <strong>Kindle</strong> para pesquisa (Busca Pre&#231;o) &#233; <strong>permitido somente em lojas autorizadas</strong> e com <strong>autoriza&#231;&#227;o pr&#233;via do supervisor</strong>.</p></div>
-<div class="alert-box warning"><span class="alert-icon">&#9888;&#65039;</span><span>As pesquisas com Kindle <strong>s&#243; podem ser realizadas com autoriza&#231;&#227;o pr&#233;via</strong> do seu supervisor. Nunca utilize sem essa confirma&#231;&#227;o.</span></div>
-<div class="content-block"><p><strong>Diferen&#231;a em rela&#231;&#227;o &#224; pesquisa normal:</strong></p><ul class="step-list"><li><span class="step-num">1</span>O fluxo &#233; o mesmo: <strong>Check-In &#8594; Pesquisa &#8594; Check-Out</strong>.</li><li><span class="step-num">2</span>H&#225; uma tarefa adicional chamada <strong>"Auditoria Final"</strong>, realizada ap&#243;s as pesquisas do Busca Pre&#231;o &#8212; <strong>nunca deve ser esquecida</strong>.</li><li><span class="step-num">3</span>Para identificar o arquivo do Kindle correto para a loja, observe o nome exibido na tarefa. Exemplo: <code>Zukkin_2424000</code>.</li></ul></div>
-<div class="alert-box danger"><span class="alert-icon">&#128680;</span><span>A <strong>Auditoria Final</strong> &#233; obrigat&#243;ria e deve ser executada ap&#243;s todas as pesquisas do Busca Pre&#231;o. N&#227;o encerre a pesquisa sem realiz&#225;-la.</span></div>
-<div class="quiz-section"><div class="quiz-title">Teste seu conhecimento</div><div class="quiz-question">Qual tarefa &#233; exclusiva das pesquisas com Kindle (Busca Pre&#231;o)?</div><div class="quiz-options"><button class="quiz-option" onclick="answerQuiz(this,0,1,'kindle')" data-idx="0"><span class="opt-letter">A</span>Check-In especial com c&#243;digo QR</button><button class="quiz-option" onclick="answerQuiz(this,1,1,'kindle')" data-idx="1"><span class="opt-letter">B</span>Auditoria Final, realizada ap&#243;s todas as pesquisas do Busca Pre&#231;o</button><button class="quiz-option" onclick="answerQuiz(this,2,1,'kindle')" data-idx="2"><span class="opt-letter">C</span>Sincroniza&#231;&#227;o dupla ao final</button><button class="quiz-option" onclick="answerQuiz(this,3,1,'kindle')" data-idx="3"><span class="opt-letter">D</span>Foto de embalagem de todos os produtos</button></div><div class="quiz-feedback" id="qfb-kindle"></div><button class="quiz-retry" id="qr-kindle" onclick="retryQuiz('kindle')">&#8635; Tentar novamente</button></div>
-<button class="btn-done" onclick="markDone('kindle', this)">&#10003;&nbsp;M&#243;dulo Conclu&#237;do</button></div></div>
-
-<!-- ======= TELA DE CONCLUSÃO ======= -->
-<div id="finish-screen">
-<span class="finish-icon">&#127891;</span>
-<h2>Treinamento Conclu&#237;do!</h2>
-<p>Voc&#234; revisou todos os m&#243;dulos do Aplicativo ZGO com sucesso.<br>Em caso de d&#250;vidas, consulte seu supervisor ou analista de regi&#227;o.</p>
-<div id="finish-score" class="finish-score">&#127942; 0 de 7 quest&#245;es corretas</div>
-<div class="finish-modules-summary"><span class="finish-pill">&#128241; O que &#233; o ZGO</span><span class="finish-pill">&#127968; Tela Inicial</span><span class="finish-pill">&#128205; Check-In</span><span class="finish-pill">&#128722; Pesquisa na G&#244;ndola</span><span class="finish-pill">&#127937; Check-Out</span><span class="finish-pill">&#128260; Sincroniza&#231;&#227;o</span><span class="finish-pill">&#128223; Kindle</span></div>
-<button class="finish-cta" onclick="window.scrollTo({top:0,behavior:'smooth'})">&#8593; Revisar o treinamento</button>
-</div>
-</main></div>
 <script>
 var modules = ["intro","tela","checkin","gondola","checkout","sync","kindle"];
 var done = new Set();
@@ -311,25 +613,81 @@ var quizExplain = {
   sync: "A sincroniza\u00e7\u00e3o total exige: acessar o menu (\u2630) \u2192 Re-enviar dados \u2192 Enviar dados e fotos de cada tarefa \u2192 verificar Status.",
   kindle: "As pesquisas com Kindle possuem uma tarefa adicional chamada \"Auditoria Final\", obrigat\u00f3ria ap\u00f3s todas as pesquisas."
 };
+
+// ===== LOCALSTORAGE =====
+function saveProgress() {
+  try {
+    localStorage.setItem('zgo_done', JSON.stringify([...done]));
+    localStorage.setItem('zgo_quiz', JSON.stringify(quizScores));
+  } catch(e) {}
+}
+
+function loadProgress() {
+  try {
+    var savedDone = localStorage.getItem('zgo_done');
+    var savedQuiz = localStorage.getItem('zgo_quiz');
+    if (savedDone) {
+      JSON.parse(savedDone).forEach(function(id) {
+        done.add(id);
+        var nav = document.querySelector('[data-module="' + id + '"]');
+        if (nav) nav.classList.add('done');
+        var btn = document.querySelector('#mod-' + id + ' .btn-done');
+        if (btn) { btn.classList.add('completed'); btn.textContent = '\u2714 M\u00f3dulo Conclu\u00eddo'; }
+      });
+    }
+    if (savedQuiz) quizScores = JSON.parse(savedQuiz);
+    updateProgress();
+    if (done.size > 0) showToast('\ud83d\udcbe Progresso restaurado! ' + done.size + '/' + modules.length + ' m\u00f3dulos conclu\u00eddos.');
+  } catch(e) {}
+}
+
+// ===== PROGRESS =====
 function updateProgress() {
   var pct = (done.size / modules.length) * 100;
   document.getElementById("progress-fill").style.width = pct + "%";
   document.getElementById("progress-label").textContent = done.size + " / " + modules.length + " m\u00f3dulos";
+  var sf = document.getElementById("sidebar-progress-fill");
+  var st = document.getElementById("sidebar-progress-text");
+  if (sf) sf.style.width = pct + "%";
+  if (st) st.textContent = done.size + "/" + modules.length;
+  updateHeaderScore();
   if (done.size === modules.length) {
     updateFinishScore();
     document.getElementById("finish-screen").classList.add("visible");
     document.getElementById("finish-screen").scrollIntoView({ behavior: "smooth", block: "center" });
+    launchConfetti();
   }
 }
+
+function updateHeaderScore() {
+  var c = Object.values(quizScores).filter(Boolean).length;
+  var el = document.getElementById("header-score-text");
+  if (el) el.textContent = c + "/7 quiz";
+}
+
+function updateFinishScore() {
+  var c = Object.values(quizScores).filter(Boolean).length;
+  var el = document.getElementById("finish-score");
+  if (el) el.textContent = "\uD83C\uDFC6 " + c + " de 7 quest\u00f5es corretas";
+}
+
+// ===== MARK DONE =====
 function markDone(id, btn) {
   done.add(id);
   btn.classList.add("completed");
   btn.textContent = "\u2714 M\u00f3dulo Conclu\u00eddo";
   document.querySelector('[data-module="' + id + '"]').classList.add("done");
+  saveProgress();
   updateProgress();
+  showToast('\u2705 M\u00f3dulo conclu\u00eddo e salvo!');
   var idx = modules.indexOf(id);
-  if (idx < modules.length - 1) { var next = modules[idx + 1]; showModule(next, document.querySelector('[data-module="' + next + '"]')); }
+  if (idx < modules.length - 1) {
+    var next = modules[idx + 1];
+    showModule(next, document.querySelector('[data-module="' + next + '"]'));
+  }
 }
+
+// ===== SHOW MODULE =====
 function showModule(id, el) {
   modules.forEach(function(m) { document.getElementById("mod-" + m).classList.remove("visible"); });
   document.querySelectorAll(".nav-item").forEach(function(n) { n.classList.remove("active"); });
@@ -340,44 +698,60 @@ function showModule(id, el) {
   var body = card.querySelector(".card-body");
   header.classList.add("open"); body.classList.add("open");
   header.querySelector(".card-chevron").textContent = "\u25B2";
+  header.setAttribute("aria-expanded", "true");
   card.scrollIntoView({ behavior: "smooth", block: "start" });
   closeMobileMenu();
 }
+
+// ===== TOGGLE CARD =====
 function toggleCard(header) {
   var body = header.nextElementSibling;
   var chevron = header.querySelector(".card-chevron");
   var isOpen = body.classList.contains("open");
-  body.classList.toggle("open", !isOpen); header.classList.toggle("open", !isOpen);
+  body.classList.toggle("open", !isOpen);
+  header.classList.toggle("open", !isOpen);
   chevron.textContent = isOpen ? "\u25BC" : "\u25B2";
+  header.setAttribute("aria-expanded", String(!isOpen));
 }
+
+// ===== QUIZ =====
 function answerQuiz(btn, idx, correct, moduleId) {
   var section = btn.closest(".quiz-section");
   var options = section.querySelectorAll(".quiz-option");
   var feedback = document.getElementById("qfb-" + moduleId);
   var retry = document.getElementById("qr-" + moduleId);
-  options.forEach(function(opt) { opt.classList.add("disabled"); });
+  options.forEach(function(opt) { opt.classList.add("disabled"); opt.setAttribute("aria-disabled","true"); });
   if (idx === correct) {
-    btn.classList.add("correct"); feedback.className = "quiz-feedback show success";
-    feedback.innerHTML = "\u2705 Correto! " + quizExplain[moduleId]; quizScores[moduleId] = true;
+    btn.classList.add("correct");
+    feedback.className = "quiz-feedback show success";
+    feedback.innerHTML = "\u2705 Correto! " + quizExplain[moduleId];
+    quizScores[moduleId] = true;
   } else {
-    btn.classList.add("wrong"); options[correct].classList.add("correct");
+    btn.classList.add("wrong");
+    options[correct].classList.add("correct");
     feedback.className = "quiz-feedback show error";
     feedback.innerHTML = "\u274C N\u00e3o foi dessa vez. " + quizExplain[moduleId];
-    quizScores[moduleId] = false; retry.classList.add("show");
+    quizScores[moduleId] = false;
+    retry.classList.add("show");
   }
+  saveProgress();
+  updateHeaderScore();
 }
+
 function retryQuiz(moduleId) {
   var section = document.getElementById("qfb-" + moduleId).closest(".quiz-section");
-  section.querySelectorAll(".quiz-option").forEach(function(o) { o.classList.remove("correct","wrong","disabled"); });
+  section.querySelectorAll(".quiz-option").forEach(function(o) {
+    o.classList.remove("correct","wrong","disabled");
+    o.removeAttribute("aria-disabled");
+  });
   document.getElementById("qfb-" + moduleId).className = "quiz-feedback";
   document.getElementById("qr-" + moduleId).classList.remove("show");
   delete quizScores[moduleId];
+  saveProgress();
+  updateHeaderScore();
 }
-function updateFinishScore() {
-  var c = Object.values(quizScores).filter(Boolean).length;
-  var el = document.getElementById("finish-score");
-  if (el) el.textContent = "\uD83C\uDFC6 " + c + " de 7 quest\u00f5es corretas";
-}
+
+// ===== MOBILE MENU =====
 function toggleMobileMenu() {
   document.getElementById("sidebar").classList.toggle("mobile-open");
   document.getElementById("mobileOverlay").classList.toggle("active");
@@ -386,6 +760,66 @@ function closeMobileMenu() {
   document.getElementById("sidebar").classList.remove("mobile-open");
   document.getElementById("mobileOverlay").classList.remove("active");
 }
+
+// ===== TOAST =====
+function showToast(msg) {
+  var toast = document.getElementById("toast");
+  toast.textContent = msg;
+  toast.classList.add("show");
+  setTimeout(function() { toast.classList.remove("show"); }, 3000);
+}
+
+// ===== CONFETTI =====
+function launchConfetti() {
+  var canvas = document.getElementById("confetti-canvas");
+  canvas.style.display = "block";
+  var ctx = canvas.getContext("2d");
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+  var particles = [];
+  var colors = ["#E8312A","#2DA44E","#F59E0B","#3B82F6","#8B5CF6","#EC4899","#fff"];
+  for (var i = 0; i < 160; i++) {
+    particles.push({
+      x: Math.random() * canvas.width,
+      y: Math.random() * canvas.height - canvas.height,
+      r: Math.random() * 6 + 4,
+      d: Math.random() * 150 + 10,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      tilt: Math.floor(Math.random() * 10) - 10,
+      tiltAngleInc: Math.random() * 0.07 + 0.05,
+      tiltAngle: 0
+    });
+  }
+  var angle = 0; var frame = 0; var maxFrames = 320;
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    particles.forEach(function(p) {
+      ctx.beginPath(); ctx.lineWidth = p.r / 2; ctx.strokeStyle = p.color;
+      ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+      ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+      ctx.stroke();
+    });
+    angle += 0.01; frame++;
+    particles.forEach(function(p, i) {
+      p.tiltAngle += p.tiltAngleInc;
+      p.y += (Math.cos(angle + p.d) + 1 + p.r / 2) * 1.5;
+      p.x += Math.sin(angle) * 1.5;
+      p.tilt = Math.sin(p.tiltAngle) * 12;
+      if (p.y > canvas.height && frame < maxFrames) {
+        particles[i] = { x: Math.random() * canvas.width, y: -10, r: p.r, d: p.d, color: p.color, tilt: p.tilt, tiltAngleInc: p.tiltAngleInc, tiltAngle: p.tiltAngle };
+      }
+    });
+  }
+  var interval = setInterval(draw, 16);
+  setTimeout(function() {
+    clearInterval(interval);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    canvas.style.display = "none";
+  }, maxFrames * 16 + 500);
+}
+
+// ===== INIT =====
+window.addEventListener('DOMContentLoaded', loadProgress);
 </script>
 </body>
 </html>
